@@ -12,6 +12,7 @@
 //     See the License for the specific language governing permissions and
 // limitations under the License.
 
+'use strict';
 (function(shared, scope, testing) {
   scope.animationsWithPromises = [];
 
@@ -342,7 +343,9 @@
       var wrapped = handler;
       if (typeof handler == 'function') {
         wrapped = (function(e) {
-          e.target = this;
+          try {
+            e.target = this;
+          } catch (e) { } // TypeError: Cannot set property target of #<Event> which has only a getter
           handler.call(this, e);
         }).bind(this);
         handler._wrapper = wrapped;

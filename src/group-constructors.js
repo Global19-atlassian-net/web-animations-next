@@ -12,6 +12,7 @@
 //     See the License for the specific language governing permissions and
 // limitations under the License.
 
+'use strict';
 (function(shared, scope, testing) {
 
   function groupChildDuration(node) {
@@ -130,7 +131,8 @@
             total += groupChildDuration(child);
           });
           return Math.max(total, 0);
-        }
+        },
+        set: function(unused) {}
       });
 
   window.GroupEffect.prototype = Object.create(constructor.prototype);
@@ -144,7 +146,8 @@
             max = Math.max(max, groupChildDuration(child));
           });
           return max;
-        }
+        },
+        set: function(unused) {}
       });
 
   scope.newUnderlyingAnimationForGroup = function(group) {

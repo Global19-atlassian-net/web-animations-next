@@ -12,6 +12,7 @@
 //     See the License for the specific language governing permissions and
 // limitations under the License.
 
+'use strict';
 (function(shared, testing) {
 
   var fills = 'backwards|forwards|both|none'.split('|');
@@ -143,7 +144,7 @@
           if ((property == 'direction') && (directions.indexOf(timingInput[property]) == -1)) {
             return;
           }
-          if (property == 'playbackRate' && timingInput[property] !== 1 && shared.isDeprecated('AnimationEffectTiming.playbackRate', '2014-11-28', 'Use Animation.playbackRate instead.')) {
+          if (property === 'playbackRate') {
             return;
           }
           timing[property] = timingInput[property];
